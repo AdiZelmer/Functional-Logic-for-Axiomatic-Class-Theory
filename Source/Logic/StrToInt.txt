@@ -1,9 +1,0 @@
-PrepareTheSecondArgument
-DecodeSt
-GetLink
-Demarcate
-InMarcator
-GetQuantifier
-PutStringSentence
-GetNumber
-GetNumberStay
