@@ -1,0 +1,81 @@
+"Logic" is designed to work on a computer network.
+To install "Logic", you have to perform 3 steps. The first two points must be performed on the server. The third point must be performed on all workstations. If you want to work with "Logic" on a single computer, you perform all three points on this computer.
+
+1.	Installation and configuration of the Firebird service
+==============================================================
+If you already have the "Firebird-2.5.3" installed on the server and you know the password for the "sysdba" user, then go directly to point 1b (configuration). If not, then choose a server on which you do not have "Firebird" installed and start installing the program (point 1a).
+
+a) Installation
+Double-click the program "Firebird-2.5.3.26780_0_x64.exe" to start the installation. Confirm that you agree for this program to make changes in the operating system. Also confirm that you agree with the terms of use. It is important to leave all the installation options as they are presented, that is, not to make any changes. After confirming all the questions, the program will install Firebird on this computer.
+
+Name <Firebird> the installation folder. It could be something like this:
+	C:\Program Files\Firebird\Firebird_2_5
+Confirm:
+- I accept the agreement
+- Server components
+- Super Server binary
+- Developer and admin tools components
+- Use the Guardian to control the server
+- Run as a Service
+- Start Firebird automatically everytime you boot up
+- Install Control Panel Applet
+- Generate client library
+- Start Firebird now
+
+Start the service "Firebird", or restart the computer.
+
+b) Configuration
+Start Windows command prompt, where you enter the command:
+	"<Firebird>\bin\gsec.exe" -user sysdba -password masterkey
+
+where <Firebird> is the installation location of Firebird. If Firebird was installed earlier, instead of the "masterkey" password, use the password required for the "sysdba" user.
+
+If everything worked correctly, you get the prompt:
+	GSEC>
+Through the following two commands, you define a new user (AZ) required for the "Logic" system:
+	GSEC> add AZ -pw servus
+	GSEC> quit
+Firebird is now installed and configured!
+
+2.	Installation of the database Logic.fdb
+==============================================
+Extract the file "Logic.bak" from the file "Logic.zip".
+Copy the file "Logic.bak" to a location on the server, for example to "D:\Logic\Database". Let us name this location <Database>.
+Start Windows command prompt, where you enter the command:
+	"<Firebird>\bin\gbak.exe" -c -p 4096 -user AZ -password servus <Database>\Logic.bak <Database>\Logic.fdb
+
+where <Firebird> is the installation location of Firebird.
+If the command is written correctly, wait for the prompt to reappear. The gbak program will take a few minutes to create the file Logic.fdb, which is the database. 
+
+3.	Installation of the program Logic.exe
+=============================================
+The file Logic.con is a text document. Open it with Editor (not with Word!).  The content of the file looks something like this:
+	[Connection]
+	Server=MyServer
+	Path=MyPath
+
+Instead of MyServer, put the name or the IP-Adress of the server. Instead of MyPath, put
+<Database>\Logic.fdb
+
+where <Database> is the location of the database on the server. Finally, the file Logic.con should look something like this:
+	[Connection]
+	Server=ServerName
+	Path= D:\Logic\Database\Logic.fdb
+or
+	[Connection]
+	Server=192.168.1.160
+	Path= D:\Logic\Database\Logic.fdb
+
+If you install "Logic" on a single computer, then in the file "Logic.con" you can use the name "localhost" instead of the server name:
+	[Connection]
+	Server=localhost
+	Path= D:\Logic\Database\Logic.fdb
+Save this file.
+
+Copy the files:
+	Logic.con
+	Logic.exe
+	fbclient.dll
+to a folder.
+Start the program “Logic.exe” from this folder.
+
