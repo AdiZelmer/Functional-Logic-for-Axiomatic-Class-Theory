@@ -6,10 +6,10 @@ To install "Logic", you have to perform 3 steps. The first two points must be pe
 If you already have the "Firebird-2.5.3" installed on the server and you know the password for the "sysdba" user, then go directly to point 1b (configuration). If not, then choose a server on which you do not have "Firebird" installed and start installing the program (point 1a).
 
 a) Installation
-Double-click the program "Firebird-2.5.3.26780_0_x64.exe" to start the installation. Confirm that you agree for this program to make changes in the operating system. Also confirm that you agree with the terms of use. It is important to leave all the installation options as they are presented, that is, not to make any changes. After confirming all the questions, the program will install Firebird on this computer.
+Double-click the program "Firebird-2.5.3.26780_0_Win32.exe" to start the installation. Confirm that you agree for this program to make changes in the operating system. Also confirm that you agree with the terms of use. It is important to leave all the installation options as they are presented, that is, not to make any changes. After confirming all the questions, the program will install Firebird on this computer.
 
 Name <Firebird> the installation folder. It could be something like this:
-	C:\Program Files\Firebird\Firebird_2_5
+	C:\Program Files (x86)\Firebird\Firebird_2_5
 Confirm:
 - I accept the agreement
 - Server components
